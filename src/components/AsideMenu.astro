@@ -4,8 +4,13 @@ import HomeIcon from "@/icons/Home.astro"
 import SearchIcon from "@/icons/Search.astro"
 import SideMenuItem from "./SideMenuItem.astro"
 import SideMenuCard from "./SideMenuCard.astro"
+import SideMenuCardCopy from './SideMenuCardCopy.astro'
 
 import { playlists } from "@/lib/data"
+import {getNewReleases} from '@/utils/info'
+
+const newReleases = await getNewReleases()
+console.log("newReleases", Math.floor(Math.random() * 10))
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
@@ -30,7 +35,7 @@ import { playlists } from "@/lib/data"
          Tu biblioteca
       </SideMenuItem>
 
-      {playlists.map((playlist) => <SideMenuCard playlist={playlist} />)}
+      {newReleases.albums.items.map((playlist: any) => <SideMenuCardCopy  playlist={playlist} />)}
     </ul>
   </div>
 </nav>
